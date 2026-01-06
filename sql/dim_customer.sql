@@ -1,10 +1,13 @@
 CREATE OR REPLACE TABLE dim_customer (
     customer_key       INTEGER AUTOINCREMENT PRIMARY KEY,
     customer_id        STRING,
-    customer_name      STRING,
+    first_name         STRING,
+    last_name          STRING,
+    gender             STRING,
+    birth_date         DATE,
     email              STRING,
+    loyalty_tier       STRING,
     country            STRING,
-    segment            STRING,
-    created_at         TIMESTAMP
+    city               STRING,
+    signup_date        DATE
 );
--- This table is used to store customer dimension data for analytics purposes.

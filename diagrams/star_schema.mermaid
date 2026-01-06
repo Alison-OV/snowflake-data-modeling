@@ -1,30 +1,60 @@
 erDiagram
     FACT_SALES {
         INT sales_key PK
-        STRING order_id
+        STRING transaction_id
+        INT date_key FK
         INT customer_key FK
         INT product_key FK
-        INT date_key FK
+        INT brand_key FK
+        INT store_key FK
+        INT channel_key FK
         INT quantity
+        NUMBER unit_price
+        NUMBER discount_amount
         NUMBER total_amount
     }
 
     DIM_CUSTOMER {
         INT customer_key PK
-        STRING customer_id
-        STRING customer_name
-        STRING email
+        STRING first_name
+        STRING last_name
+        STRING gender
+        DATE birth_date
+        STRING loyalty_tier
         STRING country
-        STRING segment
-        TIMESTAMP created_at
+        STRING city
+        DATE signup_date
     }
 
     DIM_PRODUCT {
         INT product_key PK
-        STRING product_id
         STRING product_name
         STRING category
+        STRING subcategory
+        STRING size
         NUMBER price
+        INT brand_key
+    }
+
+    DIM_BRAND {
+        INT brand_key PK
+        STRING brand_name
+        STRING country_of_origin
+        BOOLEAN is_premium
+    }
+
+    DIM_STORE {
+        INT store_key PK
+        STRING store_name
+        STRING store_type
+        STRING country
+        STRING city
+        DATE opened_date
+    }
+
+    DIM_CHANNEL {
+        INT channel_key PK
+        STRING channel_name
     }
 
     DIM_DATE {
@@ -38,6 +68,9 @@ erDiagram
         BOOLEAN is_weekend
     }
 
-    FACT_SALES }o--|| DIM_CUSTOMER : "customer_key"
-    FACT_SALES }o--|| DIM_PRODUCT  : "product_key"
-    FACT_SALES }o--|| DIM_DATE     : "date_key"
+    FACT_SALES }o--|| DIM_CUSTOMER : customer_key
+    FACT_SALES }o--|| DIM_PRODUCT  : product_key
+    FACT_SALES }o--|| DIM_BRAND    : brand_key
+    FACT_SALES }o--|| DIM_STORE    : store_key
+    FACT_SALES }o--|| DIM_CHANNEL  : channel_key
+    FACT_SALES }o--|| DIM_DATE     : date_key
